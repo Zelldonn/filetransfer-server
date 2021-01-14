@@ -18,7 +18,7 @@ public class Main {
             try {
                 config = ServerConfiguration.loadFromFile(userDir.resolve("server.properties"));
             } catch (FileNotFoundException fileNotFoundException) {
-                System.err.println("Cannot create file...");
+                System.err.println("Cannot create file...EXITING");
                 System.exit(1);
             }
         }
@@ -58,13 +58,12 @@ public class Main {
         }
         try {
             FileWriter myWriter = new FileWriter("server.properties");
-            myWriter.write("""
-                    ROOT_DIR=
-                    STORE_DIR=store
-                    DEFAULT_LEASE_TIME=60
-                    ID_LENGTH=5
-                    SERVER_PORT=8565
-                    CHARSET=azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789""");
+            myWriter.write(" ROOT_DIR=\n"+
+                    "STORE_DIR=store\n"+
+                    "DEFAULT_LEASE_TIME=60\n"+
+                    "ID_LENGTH=5\n"+
+                    "SERVER_PORT=8565\n"+
+                    "CHARSET=azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN0123456789");
             myWriter.close();
             System.out.println("Successfully wrote default properties.");
         } catch (IOException e) {

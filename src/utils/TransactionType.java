@@ -11,5 +11,5 @@ public class TransactionType {
 
     public static final byte DIRECTORY = 0x4;
 
-    public static final byte NEXTFILE = 0x12;
+    public static final byte NEXT_FILE = 0x12;
 }

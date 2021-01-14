@@ -23,6 +23,8 @@ public class FileTransactionHandler extends Transaction{
 
     byte[] buffer = new byte[16*1024];
 
+    private boolean success = true;
+
     FileTransactionHandler(BufferedInputStream bis, BufferedOutputStream bos) throws IOException {
         super(bis, bos);
 
@@ -71,7 +73,6 @@ public class FileTransactionHandler extends Transaction{
                 long read = 0;
                 while (read < fileSize) {
                     count = bis.read(buffer);
-                    System.out.println("im reading");
                     read += count;
                     downloadedBytes += count;
                     fos.write(buffer, 0, count);
@@ -96,34 +97,53 @@ public class FileTransactionHandler extends Transaction{
                 createDirectory(newFolder);
                 receiveFile(newFolder);
             }
-            writeAndFlush(TransactionType.NEXTFILE);
+            writeAndFlush(TransactionType.NEXT_FILE);
         }
     }
 
     @Override
     public void Handle() {
-        try {
-            Store newStore = this.myServer.allocateStore();
+        Store newStore = this.myServer.allocateStore();
 
+        try {
             expectedFiles = dis.readInt();
             expectedBytes = dis.readLong();
             System.out.println("Transaction started : " + expectedFiles + " file(s) expected ("+ UI.byte2Readable(expectedBytes)+")");
 
             receiveFile(newStore.path);
 
-            if(downloadedBytes == expectedBytes){
+        } catch (IOException e) {
+            success = false;
+            e.printStackTrace();
+        }finally{
+            try {
+                if(fos != null)
+                    fos.close();
+                //notify server the store is invalid
+                if(success == false)
+                    myServer.invalidateStore(newStore);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if(downloadedBytes == expectedBytes){
+            try {
+                success = true;
                 newStore.start();
                 byte[] answer = newStore.ID.getBytes();
                 dos.writeLong(answer.length);
                 dos.flush();
                 bos.write(answer);
                 bos.flush();
-            } else{
-                System.err.println("Not all files have been transferred");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Transfer done.");
+        } else{
+            System.err.println("Not all files have been transferred");
+            myServer.invalidateStore(newStore);
+            //if file error : send an error to the client
         }
     }
 }

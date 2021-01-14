@@ -220,20 +220,36 @@ public class Server extends Thread implements StoreExpirationListener{
 
     private void deleteStore(Store s) throws IOException{
 
-        if(stores.containsValue(s) == false){
+        if(!stores.containsValue(s)){
             throw new RuntimeException("We received an event from a store that is not in our map. This should not happen");
         }
 
-        try {
-            Path filePath = requestFile(s.ID);
-            Files.delete(filePath);
-            Files.delete(s.path);
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Could not delete store " + s.ID);
-        }
+        deleteDirectory(s.path.toFile());
+            /*Files.delete(filePath);
+            Files.delete(s.path);*/
         s.removeExpirationListener(this);
         stores.remove(s.ID);
 
+    }
+    boolean deleteDirectory(File directoryToBeDeleted) {
+        System.out.println("Deleting" + directoryToBeDeleted);
+        File[] allContents = directoryToBeDeleted.listFiles();
+
+        if (allContents != null) {
+            System.out.println("Contains : " + allContents.length);
+            for (File file : allContents) {
+                if(file.isFile()) {
+                    try{
+                        Files.delete(file.toPath());
+                    }catch(IOException e){
+                            e.printStackTrace();
+                    }
+
+                }
+                else
+                    deleteDirectory(file);
+            }
+        }
+        return directoryToBeDeleted.delete();
     }
 }
