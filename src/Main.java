@@ -1,10 +1,13 @@
+import server.Server;
+import server.ServerConfiguration;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Server start");
+        System.out.println("server.Server start");
 
         Path userDir = Paths.get(System.getProperty("user.dir"));
 
@@ -30,7 +33,7 @@ public class Main {
         System.out.println("======================================");
         System.out.println("Starting server with config : ");
         System.out.printf("[Network]\n\tPort : %d\n", config.serverPort());
-        System.out.printf("[Server]\n\troot : %s\n", config.rootDirectory());
+        System.out.printf("[server.Server]\n\troot : %s\n", config.rootDirectory());
         System.out.printf("\tstore : %s\n", config.storeDirectory());
         System.out.printf("\tlease time : %d s\n", config.defaultLeaseTime());
         System.out.printf("\tID length: %d\n", config.IDLength());
