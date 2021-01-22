@@ -95,6 +95,9 @@ public class DownloadFileHandler extends Transfer {
             File[] fileList = store.path.toFile().listFiles();
 
             //TODO :refactor this garbage : make a common project
+            if(fileList == null){
+                System.err.println("Error fileList is null");
+            }
             this.expectedFiles = UI.calculateTotalFiles(fileList);
             this.expectedBytes = UI.calculateTotalSize(fileList);
 
@@ -103,8 +106,6 @@ public class DownloadFileHandler extends Transfer {
             dos.flush();
 
             System.out.println("transaction started : " + expectedFiles + " file(s) expected ("+ UI.byte2Readable(expectedBytes)+")");
-
-
 
             sendFile(fileList);
 

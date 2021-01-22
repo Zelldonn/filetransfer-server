@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!-- saved from url=(0022)http://www.airdroid.com --><!--[if lt IE 7]>
+<html class="lt-ie9 lt-ie8 lt-ie7 ie-6"> <![endif]--><!--[if IE 7]>
+<html class="lt-ie9 lt-ie8 ie-7"> <![endif]--><!--[if IE 8]>
+<html class="lt-ie9 ie-8"> <![endif]--><!--[if gt IE 8]><!-->
+<html class="no-ie"> <!--<![endif]-->
+<head>    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>AirDroid</title>
+    <link href="../../css/feedback.min.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        window.options = {
+            baseUrl: "../../",
+            isPublish: true,
+            isDebug: false,
+            date: "1603231138",
+            version: "1.0.0"
+        };
+    </script>
+    <script type="text/javascript" src="../../js/framework.min.js"></script>
+    <script type="text/javascript" src="../../js/feedback.min.js"></script>
+    <!-- ，Ajax， -->
+    <!-- TPL START-->
+    <script id="Feedback__index" type="text/html">
+        <div class="mod-Feedback">
+    <div class="feedback-container">
+        <h1 class="title"><%= lang.sub_title%></h1>
+
+        <div class="desc">
+            <div><%=lang.intro.format("<a class='link' id='mailto'>support@airdroid.com</a>")%>
+            </div>
+        </div>
+        <form id="feedback_form">
+            <table>
+                <tr class="row">
+                    <td class="label"><%= lang.contact_email%></td>
+                    <td><input class="text-input" id="email"/></td>
+                </tr>
+                <tr class="row row-question-type">
+                    <td class="label"><%= lang.question_type %></td>
+                    <td width="86%">
+                        <div class="select-container select-container-topic">
+                            <div class="select-container-clip">
+                                <select class="text-input" id="topic">
+                                    <option value="3"><%= lang.bug_report %></option>
+                                    <option value="4"><%= lang.feature_request %></option>
+                                    <option value="0"><%= lang.other %></option>
+                                </select>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="row row-question-device">
+                    <td class="v-top label"></td>
+                    <td>
+                        <div class="select-container select-container-device">
+                            <div class="select-container-clip">
+                                <select class="text-input" id="selectDevice">
+                                </select>
+                            </div>
+                        </div>
+                        <a class="link item-help"><%= lang.help%></a>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td class="v-top label"><%= lang.question_content%></td>
+                    <td>
+                        <textarea id="content" cols="50" rows="10" placeholder="<%=lang.feedback_device_tip%>"></textarea>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td></td>
+                    <td class="upload-wrap">
+                        <a class="link btn-upload-image" href="javascript:;"><%= lang.upload_image %></a><span><%= lang.upload_image_desc %></span>
+                    </td>
+                </tr>
+                <tr class="row">
+                    <td></td>
+                    <td class="item-feedback-attachment"></td>
+                </tr>
+                <tr class="row row3">
+                    <td></td>
+                    <td align="right">
+                        <div id="tip"></div>
+                        <div class="submit-wrap">
+                            <label id="upload_log_container" for="upload_log"><input id="upload_log" type="checkbox"/><%= lang.upload_log %></label>
+                            <input class="submit" type="button" id="submit_btn" value="<%= lang.submit%>"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="feedback-success-container feedback-success-type-issue hide">
+        <h1 class="title"><%= lang.feedback_success_title %></h1>
+        <p><%= lang.feedback_success_desc %></p>
+        <ol>
+            <li>
+                <a id="recommend_qa_1" class="link" href="http://forums.airdroid.com/viewtopic.php?f=4&t=15828&hilit=password"><%= lang.recommend_qa_1 %></a>
+            </li>
+            <li>
+                <a id="recommend_qa_2" class="link" href="http://forums.airdroid.com/viewtopic.php?f=4&t=15750"><%= lang.recommend_qa_2 %></a>
+            </li>
+            <li>
+                <a id="recommend_qa_3" class="link" href="http://forums.airdroid.com/viewtopic.php?f=3&t=15834"><%= lang.recommend_qa_3 %></a>
+            </li>
+            <li>
+                <a id="recommend_qa_4" class="link" href="http://forums.airdroid.com/viewtopic.php?f=4&t=15745"><%= lang.recommend_qa_4 %></a>
+            </li>
+            <li>
+                <a id="recommend_qa_5" class="link" href="http://forums.airdroid.com/viewtopic.php?f=4&t=15692"><%= lang.recommend_qa_5 %></a>
+            </li>
+            <li>
+                <a id="recommend_qa_6" class="link" href="http://forums.airdroid.com/viewtopic.php?f=4&t=15382"><%= lang.recommend_qa_6 %></a>
+            </li>
+        </ol>
+        <a class="link item-success-help item-help"><%= lang.help%></a>
+
+        <div class="operation-wrap">
+            <button class="btn-write-another"><%= lang.another_question %></button>
+            <button class="btn-close"><%= lang.close %></button>
+        </div>
+    </div>
+    <div class="feedback-success-container feedback-success-type-other hide">
+        <div class="img-send-success"></div>
+        <h1 class="title"><%= lang.feedback_success_title %></h1>
+
+        <div class="operation-wrap">
+            <button class="btn-write-another"><%= lang.another_question %></button>
+            <button class="btn-close"><%= lang.close %></button>
+        </div>
+    </div>
+</div>
+    </script>
+    <script id="Feedback__select_device_item" type="text/html">
+        <% _.each(data,function(item){ %>
+<option value="<%=item.id%>"><%-item.name%></option>
+<% }) %>
+    </script>
+    <script id="Common__attachment_container__attachment_container" type="text/html">
+        <div class="item-attachment-container">
+    <span class="item-empty-image"></span>
+    <p class="item-empty-tip"><%= lang.drop_file_here %></p>
+    <span class="btn btn-long item-empty-tip"><%= lang.click_to_add_files %></span>
+    <ul class="item-attachment-list"></ul>
+</div>
+    </script>
+
+    <script id="Common__attachment_container__file_item" type="text/html">
+        <li id="<%= id %>" class="item-upload-file item-state-<%= state %>">
+    <img class="item-state-icon" src="<%= state_icon %>" width="20" alt=""/>
+    <span class="item-file-name"><%= shortName %></span>
+    <span class="item-file-size"><%= size %></span>
+    <span class="item-state-waiting"><%= lang.state_wait_uploading %></span>
+    <span class="item-state-fail"><span><%= lang.state_upload_fail %></span> <a class="btn-retry" href="javascript:;"><%= lang.opt_restart %></a></span>
+    <span class="item-file-progress-bar"><span class="item-file-progress"></span></span>
+    <span class="item-file-speed">0k/s</span>
+    <a class="btn-delete" href="javascript:;"></a>
+</li>
+    </script>
+    <!-- TPL END-->
+
+</head>
+<body><script type="text/javascript">
+    Airdroid.init(Airdroid.Config.Module.Feedback);
+</script>
+</body>
+</html>
